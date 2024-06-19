@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dynamic List</title>
+  </head>
+  <body>
+    <div class="box">
+      <ul id="task-list">
+        <li>Buy milk</li>
+        <li>Buy shoes</li>
+      </ul>
+
+      <button id="btn-add-task">Add New Task</button>
+    </div>
+  </body>
+</html>
+
+<script>
+  /**
+   * @description - We need to build a dynamic list
+   * where user will click on a button & we'll
+   * dynamically add into the screen
+   *
+   * Step 1     - Create a blank list container
+   * Step 2     - Create a button to allow user to enter something
+   * Step 3     - Attach an event listener to that button to show popup
+   * Step 4     - Get list element inside script
+   * Step 5     - Get the entered content & create a new li element & set the data
+   * Step 6     - Push the data inside that list
+   */
+
+  const listElem = document.getElementById("task-list");
+  const btnAddTask = document.getElementById("btn-add-task");
+
+  // Attach an event listener
+  btnAddTask.addEventListener("click", function () {
+    console.log("BTN Click working");
+    const data = prompt("Enter your task");
+    console.log("Data: ", data);
+    if (!data) {
+      console.log("Data is needed");
+      return;
+    } else {
+      const listItemElem = document.createElement("li");
+      listItemElem.textContent = data;
+      listElem.appendChild(listItemElem);
+    }
+  });
+</script>

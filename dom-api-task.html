@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body style = "background-color: red;">
+    <button id='btn-grey'>Grey</button>
+    <button id='btn-green'>Green</button>
+    <button id='btn-white'>White</button>    
+
+    <div>
+        <p id ="p-tag">Hello Akshay , what are you doing!!!</p>
+        <button id="change-text">Change Text</button>
+        <button id="change-color">Change Text Color</button>
+        <button id="remove-p-tag">Remove P Tag</button>
+    </div>
+
+    <div id = "box">
+        <button id="btn-add-task">Add New Task</button>
+        <button id="btn-remove-task">Remove Task</button>
+    </div>
+</body>
+</html>
+<script src ='../javascript/dom-api-task.js'></script>
+<script>
+    //Added console
+    console.log("console using script tag inside html"); 
+
+
+    // Change backgroud color using button click
+    const btnGreyElem = document.getElementById("btn-grey");
+    const btnGreenElem = document.getElementById("btn-green");
+    const btnWhiteElem = document.getElementById("btn-white");
+
+  // Add Event Listener
+  btnGreyElem.addEventListener("click", () => {
+    document.body.style.backgroundColor = "grey";
+  });
+
+  btnGreenElem.addEventListener("click", () => {
+    document.body.style.backgroundColor = "green";
+  });
+
+  btnWhiteElem.addEventListener("click", () => {
+    document.body.style.backgroundColor = "white";
+  });
+
+  // change para text to somethong else
+  const changeTextElem = document.getElementById("change-text");
+  changeTextElem.addEventListener("click", () => {
+    const paraElem = document.getElementById("p-tag");
+    paraElem.innerHTML = "Hey Akshay, I hope you are doing well!!";  
+  });
+
+  // TodoList
+  const ulListElem = document.createElement("ul");
+  const btnAddTask = document.getElementById("btn-add-task"); 
+
+  // Attach an event listener
+  btnAddTask.addEventListener("click",  () =>{
+    const data = prompt("Enter your task");
+    if (!data) {
+      console.log("Data is mandatory");
+      return;
+    } else {
+      const listItemElem = document.createElement("li");
+      listItemElem.textContent = data;
+      ulListElem.appendChild(listItemElem);
+    }
+    const box = document.getElementById('box');
+    box.appendChild(ulListElem);
+  });
+
+  //remove todo list elements
+  const btnRemoveTask = document.getElementById("btn-remove-task"); 
+
+  btnRemoveTask.addEventListener("click",  () =>{
+    if(ulListElem.lastChild){
+        ulListElem.removeChild(ulListElem.lastChild);
+    }
+  });
+
+  // change p tag color
+  const changeColorElem = document.getElementById("change-color");
+  changeColorElem.addEventListener("click", () => {
+    const ptagElem = document.getElementById("p-tag");
+    ptagElem.style.color = "yellow";
+  });
+
+  // remove p tag
+  const removePtagElem = document.getElementById("remove-p-tag");
+  removePtagElem.addEventListener("click", () => {
+    const ptagElem = document.getElementById("p-tag");
+    ptagElem.remove();
+  });
+  
+ 
+  
+</script>

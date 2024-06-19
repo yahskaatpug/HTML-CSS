@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="uName">My Name is <span>akshay</span>
+        <div>My work profile is 
+        <div> student</div>
+        </div>
+    </div>
+</body>
+</html>
+
+<script>
+    const uNameElem = document.getElementById('uName');
+    console.log(uNameElem.innerText); //Returns the formatted and styled text content of the element and its children, excluding text that is hidden with CSS
+    console.log(uNameElem.textContent);// Returns the raw text content of the element and all its descendants, including spacing and CSS hidden text, but without tags
+    console.log('innerHtml',uNameElem.innerHTML);
+</script>

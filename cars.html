@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cars</title>
+  </head>
+  <body>
+    <ul id="cars-list"></ul>
+  </body>
+</html>
+
+<script>
+  const cars = [
+    "BMW i8",
+    "Mustang GT",
+    "Audi Q7",
+    "Mercedez C Class",
+    "Tata Nano",
+    "Kia Seltos",
+  ];
+
+  const carListContainer = document.getElementById("cars-list");
+  for (let i = 0; i < cars.length; i++) {
+    // Create a new LI element
+    // Set the car name from array
+    // Update the car list element
+
+    const currentCar = cars[i];
+    const carElem = document.createElement("li");
+    carElem.innerText = currentCar; // <li>Mustang GT</li>
+
+    // Add the newly created element to the list
+    carListContainer.appendChild(carElem);
+  }
+</script>

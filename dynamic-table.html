@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      table,
+      tr,
+      td,
+      th {
+        border: 1px solid silver;
+        border-collapse: collapse;
+        padding: 6px;
+      }
+    </style>
+  </head>
+  <body>
+    <table id="products-container"></table>
+  </body>
+</html>
+
+<script>
+  const productsColumns = ["ID", "Name", "Brand", "Units"];
+  const products = [
+    {
+      id: 1,
+      name: "Apple iPhone 15 Pro Max",
+      brand: "Apple",
+      unit: 30,
+    },
+    {
+      id: 2,
+      name: "Apple iPhone 14 Pro Max",
+      brand: "Apple",
+      unit: 35,
+    },
+    {
+      id: 3,
+      name: "Apple iPad Pro 13 Inch",
+      brand: "Apple",
+      unit: 40,
+    },
+  ];
+
+  const productContainer = document.getElementById("products-container");
+
+  // Create table header
+  const tableHeaderRow = document.createElement("tr");
+  productsColumns.forEach((column) => {
+    const tableHeader = document.createElement("th");
+    tableHeader.innerText = column;
+    tableHeaderRow.appendChild(tableHeader);
+  });
+  productContainer.appendChild(tableHeaderRow);
+
+  // Create table rows
+  products.forEach((product) => {
+    const tableDataRow = document.createElement("tr");
+    for (const key in product) {
+      const tableCell = document.createElement("td");
+      tableCell.innerText = product[key];
+      tableDataRow.appendChild(tableCell);
+    }
+    productContainer.appendChild(tableDataRow);
+  });
+</script>

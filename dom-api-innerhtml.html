@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>InnerHTML</title>
+  </head>
+  <body>
+    <div id="box">
+      <p style="color: red">Hello Rituja</p>
+      <h1 style="color: thistle">Hello Ram</h1>
+      <p style="background-color: violet">Hello Akshay</p>
+    </div>
+    <button id="btn-blue">Change BG to Blue</button>
+  </body>
+</html>
+
+<script>
+  /**
+   * Capture the element
+   * Check if element doesn't exists
+   * If not exists then block it
+   * Else, get the innerHTML & console
+   */
+
+  const boxElem = document.getElementById("box");
+  console.dir(boxElem);
+  if (!boxElem) {
+    console.log("No box elem found");
+  } else {
+    //console.log("Box Elem found: ", boxElem.innerHTML);
+
+    setTimeout(() => {
+      document.body.style.backgroundColor = "teal";
+      boxElem.innerHTML =
+        "<p style='color:#fff;'>Hello <strong>Ram</strong>, Welcome to New <span style='color:red;'>Life</span>.</p>";
+    }, 5000);
+  }
+  const btnBlueElem = document.getElementById("btn-blue");
+
+// Add Event Listener
+btnBlueElem.addEventListener("click", () => {
+  document.body.style.backgroundColor = "blue";
+});
+</script>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Create Element</title>
+  </head>
+  <body>
+    <div id="box">
+      <h1>Hello Sakshi</h1>
+      <h1>Hello Anamika</h1>
+    </div>
+    <div id="box2"></div>
+    <div id="box3"></div>
+    <div id="box4"></div>
+  </body>
+</html>
+
+<script>
+  const boxElem = document.getElementById("box");
+
+  if (!boxElem) {
+    console.log("No box element found");
+  } else {
+    // Create a new h1
+    // Set text to "Hello Ram"
+    // Set color to "Blue"
+
+    const h1Elem = document.createElement("h1");
+    h1Elem.innerText = "Hello Ram";
+    h1Elem.id = "ram-007";
+    h1Elem.style.color = "blue";
+
+    // Append/AppendChild this newly created element to BoxElem
+    //boxElem.appendChild(h1Elem);
+    boxElem.append(h1Elem);
+    boxElem.append("Ankit");
+    //boxElem.appendChild("Ankit");
+    //boxElem.append("<h1>Hello</h1>");
+  }
+</script>
