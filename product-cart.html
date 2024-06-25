@@ -1,0 +1,183 @@
+            <!DOCTYPE html>
+            <html lang="en">
+            <head>
+                <meta charset="UTF-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                <title>Document</title>
+                <style>
+                    #product-list {
+                    display: flex;
+                    gap: 12px;
+                    flex-wrap: wrap;
+                    }
+                    .card {
+                    width: 200px;
+                    border: 0.4px solid silver;
+                    padding: 12px;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: center;
+                    cursor: pointer;
+                    }
+                </style>
+            </head>
+            <body>
+            <div class="container">
+                <div class="product-section"></div>
+
+                <div>
+                    <input type="search" id="search-product" placeholder="search product">
+                </div>
+                <h1>Products</h1>
+                <div>
+                    <ul id="product-list"></ul>
+                </div>
+                </div>
+                <br>
+                <div class="cart-section">
+                <h2>Cart List</h2>
+                <ul id="cart-list"></ul>
+                </div>
+            </div>
+            </body>
+            </html>
+
+            <script>
+
+                const ulProductElem = document.getElementById("product-list");
+                const productElem = document.getElementById("search-product");
+
+                // call products api
+                let productList, filteredProductList; 
+                fetch("https://dummyjson.com/products")
+                    .then((response) => 
+                    response.json()) // why we cannot use  {}
+                    .then((updatedResponse) => {
+                        productList = updatedResponse.products;
+                        filteredProductList = updatedResponse.products;
+                        console.log("updatedProductList",productList);
+                        displayProducts(); // call this once we have productsList
+                    })
+                    .catch((err) => console.log(err));
+
+                // Add event for search input
+                productElem.addEventListener('input',(event)=>{
+                    const searchQuery = event.target.value;
+                    console.log("searchQuery", searchQuery);
+
+                    filteredProductList = productList.filter(product => {
+                        const title = product.title.toLowerCase();
+                        console.log("tttttt", title);
+                        return title.search(searchQuery) !== -1;
+                    });
+                    displayProducts();
+                })
+
+                function displayProducts(){
+                    const productFragment = document.createDocumentFragment();
+
+
+                for(let i=0;i<filteredProductList.length;i++){
+                    const product = filteredProductList[i];
+                    console.log("newProductLi",product);
+
+                    // create button element
+                    const buttonElem = document.createElement("button");
+
+                    const listElem = document.createElement("li");
+                    const image = document.createElement("img");
+                    const price = document.createElement("p");
+                    const title = document.createElement("p");
+
+                    image.className = "img";
+                    price.className = "price";
+                    title.className = "title";
+
+                    listElem.className = "card";
+                    buttonElem.className = "btn";
+                    image.src = product.images;
+                    image.height = 50;
+                    image.width = 50;
+                    price.innerText = `${product.price} $`;
+                    title.innerText = product.title;
+                    buttonElem.innerText = "Add To Cart";
+
+                    listElem.appendChild(image);
+                    listElem.appendChild(price);
+                    listElem.appendChild(title);    
+                    listElem.appendChild(buttonElem);    
+                    
+                    productFragment.appendChild(listElem);
+                    console.log("listElem:",listElem);
+                }
+
+                console.log("productFragment", productFragment);
+
+                ulProductElem.innerHTML = '';
+
+                ulProductElem.appendChild(productFragment);
+                }
+
+            </script>
+
+            <script>
+                // here we are following event bubbling so that we do not have to use event listner on every button
+
+                document.addEventListener('DOMContentLoaded', () => {
+
+                const cart = [];
+                const cartElem = document.getElementById("cart-list");
+
+                // Function to handle button click
+                function handleButtonClick(event) {
+                    if (event.target.classList.contains('btn')) {
+                        const liElement = event.target.closest('li');
+                        if (liElement) {
+                            alert(`You clicked on the Buy button for ${liElement.textContent.trim()}`);
+                            // You can call any other function here
+                            // e.g., addToCart(liElement);
+                            const product = extractProductDetails(liElement);
+                            console.log("product",product);
+                            addToCart(product);
+                        }
+                    }
+                }
+
+                function addToCart(product){
+                    cart.push(product);
+                    console.log("product11",product);
+                    updateCartDisplay();
+                }
+
+                function updateCartDisplay(){
+                const cartFragment = document.createDocumentFragment();
+
+                    cartElem.innerHTML = '';
+
+                    // Loop through the cart and create list items for each product
+                    cart.forEach(product => {
+                        console.log("product12",product);
+                        const li = document.createElement('li');
+                        li.textContent = `${product.title} - ${product.price}`;
+                        cartFragment.appendChild(li);
+                    });
+                    cartElem.append(cartFragment); // it is not allowing me do to appendChild
+                }
+
+                function extractProductDetails(liElement) {
+                    const productName = liElement.querySelector('.title').textContent.trim();
+                    const productPrice = liElement.querySelector('.price').textContent.trim();
+                    return {
+                        title: productName,
+                        price: productPrice,
+                    };
+                }
+
+                // Attach click event listener to the parent UL element
+                const productList = document.getElementById('product-list');
+                productList.addEventListener('click', handleButtonClick);
+            });
+
+
+            </script>
