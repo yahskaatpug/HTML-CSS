@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
+
+<script>
+    function calculator() {
+    let result = 0;
+
+    function add(num) {
+      result += num;
+      return result;
+    }
+
+    return add;
+  }
+
+  const calcualtion = calculator();
+  console.log("1.", calcualtion(10));
+  console.log("2.", calcualtion(10));
+  console.log("3.", calcualtion(10));
+  console.log("3.", calcualtion(300));
+
+////=================================
+// function createGreeter(greeting) {
+//     return function(name) {
+//         return `${greeting}, ${name}!`;
+//     };
+// }
+
+// const greetMorning = createGreeter("Good morning");
+// const greetEvening = createGreeter("Good evening");
+
+// console.log(greetMorning("Alice"));   // Output A
+// console.log(greetEvening("Bob"));     //
+////=============================================
+// function createAdder(x) {
+//     return function(y) {
+//         return `${x} + ${y} = ${x + y}`;
+//     };
+// }
+
+// const addFive = createAdder(5);
+// const addTen = createAdder(10);
+
+// console.log(addFive(3));   // Output A
+// console.log(addTen(3));    // Output B
+// console.log(addFive(7));   // Output C
+// console.log(addTen(15));   // Output D
+</script>

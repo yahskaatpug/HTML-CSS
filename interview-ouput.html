@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
+
+<script>
+//     function outer() {
+//     var x = 10;
+
+//     if (true) {
+//         var x = 20;
+//         let y = 30;
+//         console.log(y); // ?
+//     }
+
+//     console.log(x); // ?
+//     console.log(y); 
+// }
+
+// outer();
+
+// let x = 1;
+
+// function outerFunction() {
+//   let x = 2;
+//   function innerFunction() {
+//     let x = 3;
+//     console.log(x); // What is the output?
+//   }
+//   innerFunction();
+// }
+
+// outerFunction();
+// console.log(x); // What is the output?
+function exampleFunction() {
+  let b = 5;
+  if (true) {
+    let b = 10;
+    console.log(b); // What is the output?
+  }
+  console.log(b); // What is the output?
+}
+
+exampleFunction();
+</script>

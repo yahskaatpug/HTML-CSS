@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scope</title>
+</head>
+<body>
+    
+</body>
+</html>
+
+<script>
+    let a = 10; // Script scope
+    const b = 20; // Script scope
+    var c = 30; // Global scope
+
+  {// variables in this scope will not  be wiped out of memory after its execution independent of type of variable
+    let a1 = 100; // Block scope
+    var c2 = 200; // Global scope
+  }
+
+  function tryMe(){// variables in this scope will be wiped out of memory after its execution even if it is var type
+    let e=4; //local scope
+    var c = 5; // local scope
+  }
+
+  tryMe();
+  console.log("c2:",c2);
+  console.log("c:",c);
+
+
+</script>

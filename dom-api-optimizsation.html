@@ -922,7 +922,7 @@
 
   const t0 = performance.now();
   // It's an invisible container
-  const carLisFragment = document.createDocumentFragment();
+  const carLisFragment = document.createDocumentFragment();// new dom element created but it is not a part of dom currently
 
   for (let i = 0; i < cars.length; i++) {
     // Create a new LI element
@@ -934,11 +934,11 @@
     const carElem = document.createElement("li");
     carElem.innerText = currentCar; // <li>Mustang GT</li>
 
-    carLisFragment.appendChild(carElem);
+    carLisFragment.appendChild(carElem);// as cartListContainer is not a part of dom, so dom searching is not happpening, it will simpli add to cartContainer
   }
 
   // Add the newly created element to the list
-  carListContainer.appendChild(carLisFragment);
+  carListContainer.appendChild(carLisFragment);//finally we are calling DOM.
 
   const t1 = performance.now();
   console.log(`Call to doSomething took ${t1 - t0} milliseconds.`);
